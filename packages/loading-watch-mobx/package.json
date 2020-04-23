@@ -1,0 +1,31 @@
+{
+  "name": "loading-watch-mobx",
+  "version": "1.0.1",
+  "description": "watch loading by Reactive style",
+  "main": "bundle.js",
+  "scripts": {
+    "build": "rollup -c rollup.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/lirongfei123/loading-watch.git"
+  },
+  "keywords": [
+    "loading-watch",
+    "mobx",
+    "react",
+    "react-easy-state"
+  ],
+  "peerDependencies": {
+    "mobx": "*"
+  },
+  "author": "lirongping",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lirongfei123/loading-watch/issues"
+  },
+  "homepage": "https://github.com/lirongfei123/loading-watch#readme",
+  "devDependencies": {
+    "rollup": "^2.7.2"
+  }
+}
