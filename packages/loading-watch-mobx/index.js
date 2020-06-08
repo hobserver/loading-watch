@@ -4,7 +4,7 @@ function loadingWatch(target, name, descriptor) {
     const handle = function (target, thisArg, argumentsList) {
         loading[proxyFunc] = true;
         const result = target.apply(thisArg, argumentsList);
-        if (result.then) {
+        if (result && result.then) {
             return result.then((data) => {
                 loading[proxyFunc] = false;
                 return data;

@@ -1,3 +1,10 @@
+# 说明
+dva的loading方法很好用, mobx版本的呢?
+
+本插件就是解决这个问题
+
+让你在mobx版本使用loading的解决方案
+
 # 安装
 
 ## mobx版本: 

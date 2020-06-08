@@ -1,20 +1,53 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', { value: true });
-
 var observerUtil = require('@nx-js/observer-util');
 
-const loading = observerUtil.observable({});
+const tempArr = [];
+const tempObj = observerUtil.observable({});
+const loading = {
+    set: function(method, thisArg, value) {
+        var keyIndex = tempArr.findIndex((item => {
+            return item.method === method && item.thisArg === thisArg;
+        }));
+        if (keyIndex === -1) {
+            tempArr.push({
+                thisArg,
+                method 
+            });
+            keyIndex = tempArr.length - 1;
+        }
+        return tempObj[keyIndex] = value;
+    },
+    get: function (thisArg, method) {
+        if (!(thisArg && method)) {
+            throw new Error('需要提供对象, 以及对象名称')
+        }
+        var keyIndex = tempArr.findIndex((item => {
+            return item.method === thisArg[method] && item.thisArg === thisArg;
+        }));
+        if (keyIndex === -1) {
+            tempArr.push({
+                thisArg,
+                method: thisArg[method]
+            });
+            keyIndex = tempArr.length - 1;
+        }
+        return tempObj[keyIndex];
+    }
+};
 function loadingWatch(target, name, descriptor) {
     const handle = function (target, thisArg, argumentsList) {
-        loading[proxyFunc] = true;
+        loading.set(proxyFunc, thisArg, true);
         const result = target.apply(thisArg, argumentsList);
-        if (result.then) {
+        if (result && result.then) {
             return result.then((data) => {
-                loading[proxyFunc] = false;
+                loading.set(proxyFunc, thisArg, false);
                 return data;
+            }).catch(e => {
+                loading.set(proxyFunc, thisArg, false);
             });
         } else {
+            loading.set(proxyFunc, thisArg, false);
             return result;
         }
     };

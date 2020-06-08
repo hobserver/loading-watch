@@ -1,10 +1,13 @@
 {
-  "name": "loading-watch-observer-util",
-  "version": "1.0.1",
+  "name": "@ali/loading-watch-observer-util",
+  "version": "1.0.6",
   "description": "watch loading by Reactive style",
   "main": "bundle.js",
   "scripts": {
     "build": "rollup -c rollup.config.js"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npm.alibaba-inc.com"
   },
   "repository": {
     "type": "git",
