@@ -1,6 +1,6 @@
 {
   "name": "loading-watch-observer-util",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "watch loading by Reactive style",
   "main": "bundle.js",
   "scripts": {
@@ -16,8 +16,6 @@
     "react",
     "react-easy-state"
   ],
-  "peerDependencies": {
-  },
   "author": "lirongping",
   "license": "ISC",
   "bugs": {

@@ -1,6 +1,6 @@
 {
   "name": "loading-watch-mobx",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "watch loading by Reactive style",
   "main": "bundle.js",
   "scripts": {
