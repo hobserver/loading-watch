@@ -4,7 +4,7 @@ npm install loading-watch-mobx --save
 # 使用
 ### model
 import {loadingWatch} from 'loading-watch-observer-util';
-import {observable} from 'mobx';
+import {observable} from '@nx-js/observer-util';
 const data = observable(new class {
     @loadingWatch
     async getList() {
@@ -24,7 +24,7 @@ class Com extends React.Component {
     }
     render() {
         return <div>
-            {loading[dataModel.getList] ? 'loading...' : 'already loading'}
+            {loading.get(dataModel, 'getList') ? 'loading...' : 'already loading'}
         </div>
     }
 }

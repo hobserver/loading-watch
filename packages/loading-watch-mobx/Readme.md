@@ -24,7 +24,7 @@ class Com extends React.Component {
     }
     render() {
         return <div>
-            {loading[dataModel.getList] ? 'loading...' : 'already loading'}
+            {loading.get(dataModel, 'getList') ? 'loading...' : 'already loading'}
         </div>
     }
 }
