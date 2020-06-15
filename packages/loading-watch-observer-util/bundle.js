@@ -1,53 +1,30 @@
 'use strict';
 
-var observerUtil = require('@nx-js/observer-util');
-
-const tempArr = [];
-const tempObj = observerUtil.observable({});
+const prefix = 'DONNOT_USE_THIS_LOADING_VAR_';
 const loading = {
-    set: function(method, thisArg, value) {
-        var keyIndex = tempArr.findIndex((item => {
-            return item.method === method && item.thisArg === thisArg;
-        }));
-        if (keyIndex === -1) {
-            tempArr.push({
-                thisArg,
-                method 
-            });
-            keyIndex = tempArr.length - 1;
-        }
-        return tempObj[keyIndex] = value;
+    set: function(methodName, thisArg, value) {
+        return thisArg[prefix + methodName] = value;
     },
-    get: function (thisArg, method) {
-        if (!(thisArg && method)) {
+    get: function (thisArg, methodName) {
+        if (!(thisArg && methodName)) {
             throw new Error('需要提供对象, 以及对象名称')
         }
-        var keyIndex = tempArr.findIndex((item => {
-            return item.method === thisArg[method] && item.thisArg === thisArg;
-        }));
-        if (keyIndex === -1) {
-            tempArr.push({
-                thisArg,
-                method: thisArg[method]
-            });
-            keyIndex = tempArr.length - 1;
-        }
-        return tempObj[keyIndex];
+        return thisArg[prefix + methodName];
     }
 };
 function loadingWatch(target, name, descriptor) {
     const handle = function (target, thisArg, argumentsList) {
-        loading.set(proxyFunc, thisArg, true);
+        loading.set(name, thisArg, true);
         const result = target.apply(thisArg, argumentsList);
         if (result && result.then) {
             return result.then((data) => {
-                loading.set(proxyFunc, thisArg, false);
+                loading.set(name, thisArg, false);
                 return data;
             }).catch(e => {
-                loading.set(proxyFunc, thisArg, false);
+                loading.set(name, thisArg, false);
             });
         } else {
-            loading.set(proxyFunc, thisArg, false);
+            loading.set(name, thisArg, false);
             return result;
         }
     };
@@ -57,6 +34,5 @@ function loadingWatch(target, name, descriptor) {
     descriptor.value = proxyFunc;
     return descriptor;
 }
-
 exports.loading = loading;
 exports.loadingWatch = loadingWatch;

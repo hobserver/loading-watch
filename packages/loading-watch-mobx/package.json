@@ -1,6 +1,6 @@
 {
   "name": "loading-watch-mobx",
-  "version": "1.0.1",
+  "version": "2.0.1",
   "description": "watch loading by Reactive style",
   "main": "bundle.js",
   "scripts": {
@@ -17,7 +17,7 @@
     "react-easy-state"
   ],
   "peerDependencies": {
-    "mobx": "*"
+    "mobx-react": "*"
   },
   "author": "lirongping",
   "license": "ISC",
