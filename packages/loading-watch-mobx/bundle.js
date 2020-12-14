@@ -1,22 +1,26 @@
 'use strict';
 
-var mobxReact = require('mobx-react');
+var mobx = require('mobx');
 
 const prefix = 'DONNOT_USE_THIS_LOADING_VAR_';
+const prefix2 = 'DONNOT_USE_THIS_LOADING_VAR_MAP';
 const loading = {
     set: function(methodName, thisArg, value) {
-        mobxReact.runInAction(() => {
-            thisArg[prefix + methodName] = value;
+        mobx.runInAction(() => {
+            thisArg[prefix2][prefix + methodName] = value;
         });
     },
     get: function (thisArg, methodName) {
         if (!(thisArg && methodName)) {
             throw new Error('需要提供对象, 以及对象名称')
         }
-        return thisArg[prefix + methodName];
+        return thisArg[prefix2][prefix + methodName];
     }
 };
-function loadingWatch(target, name, descriptor) {
+function loadingWatch(wrapTarget, name, descriptor) {
+    if (!wrapTarget[prefix2]) {
+        wrapTarget[prefix2] = mobx.observable({});
+    }
     const handle = function (target, thisArg, argumentsList) {
         loading.set(name, thisArg, true);
         const result = target.apply(thisArg, argumentsList);

@@ -1,6 +1,6 @@
 {
   "name": "loading-watch-observer-util",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "watch loading by Reactive style",
   "main": "bundle.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/lirongfei123/loading-watch.git"
+    "url": "git+ssh://git@github.com/hobserver/loading-watch.git"
   },
   "keywords": [
     "loading-watch",
@@ -19,9 +19,9 @@
   "author": "lirongping",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/lirongfei123/loading-watch/issues"
+    "url": "https://github.com/hobserver/loading-watch/issues"
   },
-  "homepage": "https://github.com/lirongfei123/loading-watch#readme",
+  "homepage": "https://github.com/hobserver/loading-watch#readme",
   "devDependencies": {
     "rollup": "^2.7.2"
   }

@@ -1,7 +1,7 @@
 const prefix = 'DONNOT_USE_THIS_LOADING_VAR_'
 const loading = {
     set: function(methodName, thisArg, value) {
-        thisArg[prefix + methodName] = value;
+        return thisArg[prefix + methodName] = value;
     },
     get: function (thisArg, methodName) {
         if (!(thisArg && methodName)) {
