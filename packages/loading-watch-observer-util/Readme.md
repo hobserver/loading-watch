@@ -3,6 +3,7 @@ npm install loading-watch-observer-util --save
 
 # 使用
 ### model
+```
 import {loadingWatch} from 'loading-watch-observer-util';
 import {store} from 'react-module-state';
 const data = store(new class {
@@ -11,7 +12,7 @@ const data = store(new class {
         return await request(...);
     }
 });
-
+```
 ### component
 ```
 import {loading} from 'loading-watch-observer-util';
